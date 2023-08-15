@@ -19,6 +19,10 @@
   "GetDocumentDetails.userName.label": "Type the user name:",
   "GetDocumentDetails.password.label": "Type the password:",
 
+  "GetDocumentDetails.return.category.label": "Category Name",
+  "GetDocumentDetails.return.labels.label": "Different labels.",
+  "GetDocumentDetails.return.clusters_of_labels.label": "Clusters of labels (Tables).",
+
   "SetCredentials.label": "Set Credentials",
   "SetCredentials.description": "Set user name and password for subsequent actions from Konfuzio.",
   "SetCredentials.node_label": "Set Credentials for subsequent requests.",

@@ -7,6 +7,7 @@ import com.automationanywhere.botcommand.exception.BotCommandException;
 import com.automationanywhere.commandsdk.annotations.*;
 import com.automationanywhere.commandsdk.annotations.BotCommand;
 import com.automationanywhere.commandsdk.annotations.rules.NotEmpty;
+import com.automationanywhere.commandsdk.model.DataType;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.jetbrains.annotations.Nullable;
@@ -16,13 +17,19 @@ import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 import java.util.*;
 import static com.automationanywhere.commandsdk.model.AttributeType.*;
+import static com.automationanywhere.commandsdk.model.DataType.DICTIONARY;
 import static com.automationanywhere.commandsdk.model.DataType.STRING;
 
 @BotCommand
 @CommandPkg(
         name = "GetDocumentDetails", label = "[[GetDocumentDetails.label]]",
         node_label = "[[GetDocumentDetails.node_label]]", description = "[[GetDocumentDetails.description]]", icon = "pkg.svg",
-        return_label = "[[GetDocumentDetails.return_label]]", return_type = STRING, return_required = true , return_description ="[[GetDocumentDetails.return_label_description]]" )
+        return_description ="[[GetDocumentDetails.return_label_description]]" ,
+        return_label = "[[GetDocumentDetails.return_label]]",return_required = true, multiple_returns = {
+        @CommandPkg.Returns(return_label="[[GetDocumentDetails.return.category.label]]", return_name = "category", return_type = STRING, return_required = true),
+        @CommandPkg.Returns(return_label="[[GetDocumentDetails.return.labels.label]]", return_name = "labels", return_type = DICTIONARY, return_required = true),
+        @CommandPkg.Returns(return_label="[[GetDocumentDetails.return.clusters_of_labels.label]]", return_name = "clusters_of_labels", return_type = DICTIONARY, return_required = true)
+})
 public class GetDocumentDetails {
     ObjectMapper objectMapper = new ObjectMapper();
     @Sessions
