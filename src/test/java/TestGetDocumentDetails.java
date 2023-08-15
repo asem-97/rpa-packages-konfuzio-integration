@@ -12,10 +12,10 @@ public class TestGetDocumentDetails {
     public void TestGetDocumentDetails() {
         try {
             GetDocumentDetails g = new GetDocumentDetails();
-            //607098  5558759 5573396
+            //607098  5558759 5573396  588661
             //y.othman@comptechco.com  yasmine1996
             //m.fararjeh@comptechco.com bZKgihqRzi68t6B
-            DictionaryValue documentDetails =g.action(new Long(607098), "y.othman@comptechco.com", "yasmine1996");
+            DictionaryValue documentDetails =g.action(new Long(5558759), "m.fararjeh@comptechco.com", "bZKgihqRzi68t6B");
             System.out.println("===========================================Category:================================================");
             StringValue category=(StringValue) documentDetails.get(0);
             System.out.println("Category name:"+category+'\n');

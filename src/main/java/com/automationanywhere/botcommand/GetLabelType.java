@@ -35,39 +35,39 @@ import static com.automationanywhere.commandsdk.model.AttributeType.*;
 import static com.automationanywhere.commandsdk.model.DataType.STRING;
 
 //BotCommand makes a class eligible for being considered as an action.
-@BotCommand
+//@BotCommand
 
 //CommandPks adds required information to be dispalable on GUI.
-@CommandPkg(
+//@CommandPkg(
         //Unique name inside a package and label to display.
-        name = "GetLabelType", label = "[[GetLabelType.label]]",
-        node_label = "[[GetLabelType.node_label]]", description = "[[GetLabelType.description]]", icon = "pkg.svg",
+  //      name = "GetLabelType", label = "[[GetLabelType.label]]",
+    //    node_label = "[[GetLabelType.node_label]]", description = "[[GetLabelType.description]]", icon = "pkg.svg",
 
         //Return type information. return_type ensures only the right kind of variable is provided on the UI.
-        return_label = "[[GetLabelType.return_label]]", return_type = STRING, return_required = true , return_description ="[[GetLabelType.return_label_description]]" )
+      //  return_label = "[[GetLabelType.return_label]]", return_type = STRING, return_required = true , return_description ="[[GetLabelType.return_label_description]]" )
 public class GetLabelType {
     ObjectMapper objectMapper = new ObjectMapper();
-    @Sessions
+   // @Sessions
     private Map<String, Object> sessionMap;//Map<String, Object>();
 
 
     //Identify the entry point for the action. Returns a Value<String> because the return type is String.
-    @Execute
+  //  @Execute
     public void action(//Idx 1 would be displayed first, with a text box for entering the value.
-                       @Idx(index = "1", type = NUMBER)
-                       @Pkg(label = "[[GetCategory.categoryId.label]]")
-                       @NotEmpty
+                      // @Idx(index = "1", type = NUMBER)
+                      // @Pkg(label = "[[GetCategory.categoryId.label]]")
+                     //  @NotEmpty
                        Long categoryId,
-                       @Idx(index = "2", type = TEXT)
+                      // @Idx(index = "2", type = TEXT)
                        //UI labels.
-                       @Pkg(label = "[[GetCategory.userName.label]]")
+                      // @Pkg(label = "[[GetCategory.userName.label]]")
                        //Ensure that a validation error is thrown when the value is null.
-                       @NotEmpty
+                      // @NotEmpty
                        String userName,
 
-                       @Idx(index = "3", type = TEXT)
-                       @Pkg(label = "[[GetCategory.password.label]]")
-                       @NotEmpty
+                     //  @Idx(index = "3", type = TEXT)
+                     //  @Pkg(label = "[[GetCategory.password.label]]")
+                      // @NotEmpty
                        String password)throws Exception{
         objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES,false);
         //if ("".equals(filePath.trim()))
@@ -89,7 +89,7 @@ public class GetLabelType {
             System.out.println(category.api_name);
             //System.out.println(response.body());
         }catch(Exception e){
-            throw new BotCommandException("Error While writing to the Pipe! the full error message: "+e.toString());
+            throw new BotCommandException("Error! The full error message: "+e.toString());
             //System.out.println(e.toString());
         }
 

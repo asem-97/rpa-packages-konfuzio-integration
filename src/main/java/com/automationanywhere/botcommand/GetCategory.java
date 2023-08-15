@@ -14,38 +14,38 @@ import java.util.*;
 import static com.automationanywhere.commandsdk.model.AttributeType.*;
 import static com.automationanywhere.commandsdk.model.DataType.STRING;
 
-@BotCommand
+//@BotCommand
 
-@CommandPkg(
+//@CommandPkg(
         //Unique name inside a package and label to display.
-        name = "GetCategory", label = "[[GetCategory.label]]",
-        node_label = "[[GetCategory.node_label]]", description = "[[GetCategory.description]]", icon = "pkg.svg",
+  //      name = "GetCategory", label = "[[GetCategory.label]]",
+   //     node_label = "[[GetCategory.node_label]]", description = "[[GetCategory.description]]", icon = "pkg.svg",
 
         //Return type information. return_type ensures only the right kind of variable is provided on the UI.
-        return_label = "[[GetCategory.return_label]]", return_type = STRING, return_required = true , return_description ="[[GetCategory.return_label_description]]" )
+     //   return_label = "[[GetCategory.return_label]]", return_type = STRING, return_required = true , return_description ="[[GetCategory.return_label_description]]" )
 public class GetCategory {
     ObjectMapper objectMapper = new ObjectMapper();
-    @Sessions
+    //@Sessions
     private Map<String, Object> sessionMap;//Map<String, Object>();
 
 
     //Identify the entry point for the action. Returns a Value<String> because the return type is String.
-    @Execute
+    //@Execute
     public StringValue action(//Idx 1 would be displayed first, with a text box for entering the value.
-                              @Idx(index = "1", type = NUMBER)
-                       @Pkg(label = "[[GetCategory.categoryId.label]]")
-                       @NotEmpty
+                            //  @Idx(index = "1", type = NUMBER)
+                    //   @Pkg(label = "[[GetCategory.categoryId.label]]")
+                      // @NotEmpty
                        Long categoryId,
-                              @Idx(index = "2", type = TEXT)
+                             // @Idx(index = "2", type = TEXT)
                        //UI labels.
-                       @Pkg(label = "[[GetCategory.userName.label]]")
+                      // @Pkg(label = "[[GetCategory.userName.label]]")
                        //Ensure that a validation error is thrown when the value is null.
-                       @NotEmpty
+                      // @NotEmpty
                        String userName,
 
-                              @Idx(index = "3", type = TEXT)
-                       @Pkg(label = "[[GetCategory.password.label]]")
-                       @NotEmpty
+                             // @Idx(index = "3", type = TEXT)
+                     //  @Pkg(label = "[[GetCategory.password.label]]")
+                     //  @NotEmpty
                        String password)throws Exception{
         if (categoryId <=0)
             throw new BotCommandException("Please make sure to provide a valid category id!");
@@ -64,7 +64,7 @@ public class GetCategory {
             Category category = objectMapper.readValue(response.body(), Category.class);
             return new StringValue(category.api_name);
         }catch(Exception e){
-            throw new BotCommandException("Error! The full error message: "+e.toString());
+            throw new BotCommandException("Error in GetCategory!\nsThe full error message: "+e.toString());
         }
     }
 

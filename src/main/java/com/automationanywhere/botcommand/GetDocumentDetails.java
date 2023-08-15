@@ -20,9 +20,9 @@ import static com.automationanywhere.commandsdk.model.DataType.STRING;
 
 @BotCommand
 @CommandPkg(
-        name = "GetDocument", label = "[[GetDocument.label]]",
-        node_label = "[[GetDocument.node_label]]", description = "[[GetDocument.description]]", icon = "pkg.svg",
-        return_label = "[[GetDocument.return_label]]", return_type = STRING, return_required = true , return_description ="[[GetDocument.return_label_description]]" )
+        name = "GetDocumentDetails", label = "[[GetDocumentDetails.label]]",
+        node_label = "[[GetDocumentDetails.node_label]]", description = "[[GetDocumentDetails.description]]", icon = "pkg.svg",
+        return_label = "[[GetDocumentDetails.return_label]]", return_type = STRING, return_required = true , return_description ="[[GetDocumentDetails.return_label_description]]" )
 public class GetDocumentDetails {
     ObjectMapper objectMapper = new ObjectMapper();
     @Sessions
@@ -31,17 +31,17 @@ public class GetDocumentDetails {
     @Execute
     public DictionaryValue action(
                        @Idx(index = "1", type = NUMBER)
-                       @Pkg(label = "[[GetDocument.documentId.label]]")
+                       @Pkg(label = "[[GetDocumentDetails.documentId.label]]")
                        @NotEmpty
                        Long documentId,
 
                        @Idx(index = "2", type = TEXT)
-                       @Pkg(label = "[[GetDocument.userName.label]]")
+                       @Pkg(label = "[[GetDocumentDetails.userName.label]]")
                        @NotEmpty
                        String userName,
 
                        @Idx(index = "3", type = TEXT)
-                       @Pkg(label = "[[GetDocument.password.label]]")
+                       @Pkg(label = "[[GetDocumentDetails.password.label]]")
                        @NotEmpty
                        String password)throws Exception{
         if (documentId <=0)
@@ -80,7 +80,7 @@ public class GetDocumentDetails {
             String err="";
             for(StackTraceElement st:e.getStackTrace())
                 err+=st.toString()+'\n';
-            throw new BotCommandException("Error,!The full error message: "+err);
+            throw new BotCommandException("Error,!The full error message:\n"+err);
         }
 
     }
@@ -151,10 +151,10 @@ public class GetDocumentDetails {
                     //?
                 }
                 Map<String, Value> label_map = new LinkedHashMap<>();
-                label_map.put("type", new StringValue(annotationSet.getLabel_set().getName()));
-                label_map.put("name", new StringValue(label.getName()));
-                label_map.put("normalized", new StringValue(best_annotation_for_label!=null?best_annotation_for_label.getNormalized():""));
-                label_map.put("confidence", new NumberValue(best_annotation_for_label!=null?best_annotation_for_label.getConfidence():0));
+                //label_map.put("type", new StringValue(annotationSet.getLabel_set().getName()));
+                label_map.put("label", new StringValue(label.getName()));
+                label_map.put("value", new StringValue(best_annotation_for_label!=null?best_annotation_for_label.getNormalized():""));
+                label_map.put("confidence", new NumberValue(best_annotation_for_label!=null?(int)(best_annotation_for_label.getConfidence()*100):0));
                 collection.put(""+collection.size(), new DictionaryValue(label_map));//It's important to put collection.size() in indexing in order to not override previous labels!
             }
             return collection;
